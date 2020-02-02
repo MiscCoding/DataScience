@@ -1,7 +1,7 @@
 # Data Preprocessing
 
 # Importing the dataset
-dataset = read.csv('Data.csv')
+dataset = read.csv('C:\\Users\\neoge_nb4nkvy\\Documents\\GitHub\\DataScience\\Part 1 - Data Preprocessing\\Data.csv')
 
 # Taking care of missing data
 dataset$Age = ifelse(is.na(dataset$Age),
@@ -18,3 +18,12 @@ dataset$Country = factor(dataset$Country,
 dataset$Purchased = factor(dataset$Purchased,
                            levels = c('No', 'Yes'),
                            labels = c(0, 1))
+
+
+#install.packages('caTools')
+
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$Purchased,SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
